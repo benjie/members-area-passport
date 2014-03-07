@@ -1,0 +1,23 @@
+{
+  "name": "members-area-passport",
+  "version": "0.1.0",
+  "description": "Add additional passport authentication methods to members-area.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/benjie/members-area-passport.git"
+  },
+  "keywords": [
+    "members-area",
+    "passport"
+  ],
+  "author": "Benjie Gillam <code@benjiegillam.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/benjie/members-area-passport/issues"
+  },
+  "homepage": "https://github.com/benjie/members-area-passport"
+}
