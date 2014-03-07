@@ -1,4 +1,4 @@
-Controller = require '../../../app/controller'
+Controller = require 'members-area/app/controller'
 
 module.exports = class PassportController extends Controller
   settings: (done) ->

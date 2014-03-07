@@ -8,18 +8,18 @@ module.exports =
     env = require "#{@app.path}/app/env"
     app = @app
 
-    app.addRoute 'all', '/accounts', 'passport#passport#accounts'
-    app.addRoute 'all', '/settings/passport', 'passport#passport#settings'
+    app.addRoute 'all', '/accounts', 'members-area-passport#passport#accounts'
+    app.addRoute 'all', '/settings/passport', 'members-area-passport#passport#settings'
 
     @hook 'navigation_items', ({addItem}) ->
       addItem 'user',
         title: 'Accounts'
-        id: 'passport-passport-accounts'
+        id: 'members-area-passport-passport-accounts'
         href: '/accounts'
         priority: 20
       addItem 'settings',
         title: 'Social login'
-        id: 'passport-passport-settings'
+        id: 'members-area-passport-passport-settings'
         href: '/settings/passport'
         priority: 100
         permissions: ['configure_passport']
