@@ -1,6 +1,6 @@
 {
   "name": "members-area-passport",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Add additional passport authentication methods to members-area.",
   "main": "index.js",
   "scripts": {
@@ -17,7 +17,7 @@
   "dependencies": {
     "async": "~0.2.10",
     "passport-github": "~0.1.5",
-    "passport-facebook": "~1.0.2",
+    "passport-facebook": "~1.0.3",
     "passport-twitter": "~1.0.2"
   },
   "author": "Benjie Gillam <code@benjiegillam.com>",

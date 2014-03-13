@@ -11,30 +11,8 @@ module.exports =
     app.addRoute 'all', '/accounts', 'members-area-passport#passport#accounts'
     app.addRoute 'all', '/settings/passport', 'members-area-passport#passport#settings'
 
-    @hook 'navigation_items', ({addItem}) ->
-      addItem 'user',
-        title: 'Accounts'
-        id: 'members-area-passport-passport-accounts'
-        href: '/accounts'
-        priority: 20
-      addItem 'settings',
-        title: 'Social login'
-        id: 'members-area-passport-passport-settings'
-        href: '/settings/passport'
-        priority: 100
-        permissions: ['configure_passport']
-
-    @hook 'render-session-login', (options, done) ->
-      {controller, html} = options
-      htmlToAdd = "
-        <span>With: </span><br />
-        <a class='register' href='/auth/facebook'>Facebook</a> |
-        <a class='register' href='/auth/github'>GitHub</a> |
-        <a class='register' href='/auth/twitter'>Twitter</a><br />
-        "
-      options.html = html.replace("</h2>", "</h2>"+htmlToAdd)
-
-      done()
+    @hook 'navigation_items', @modifyNavigationItems.bind(this)
+    @hook 'render-session-login', @modifyLoginPage.bind(this)
 
     socialProvider = (socialProvider, req, profile, done) ->
       req.models.UserLinked.find()
@@ -115,3 +93,33 @@ module.exports =
       facebook: settings.FACEBOOK_APP_ID and settings.FACEBOOK_SECRET
       twitter: settings.TWITTER_APP_ID and settings.TWITTER_SECRET
     return providers
+
+  modifyLoginPage: (options, done) ->
+    {controller, html} = options
+    supportedProviders = @supportedProviders()
+
+    providers = []
+    providers.push "<a class='register' href='/auth/facebook'>Facebook</a>" if supportedProviders.facebook
+    providers.push "<a class='register' href='/auth/github'>GitHub</a>" if supportedProviders.github
+    providers.push "<a class='register' href='/auth/twitter'>Twitter</a>" if supportedProviders.twitter
+    if providers.length
+      htmlToAdd = "<span>With: </span><br />#{providers.join(" | ")}<br />"
+      options.html = html.replace("</h2>", "</h2>"+htmlToAdd)
+
+    done()
+
+  modifyNavigationItems: ({addItem}) ->
+    addItem 'user',
+      title: 'Accounts'
+      id: 'members-area-passport-passport-accounts'
+      href: '/accounts'
+      priority: 20
+
+    addItem 'settings',
+      title: 'Social login'
+      id: 'members-area-passport-passport-settings'
+      href: '/settings/passport'
+      priority: 100
+      permissions: ['configure_passport']
+
+    return
