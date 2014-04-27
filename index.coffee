@@ -95,7 +95,7 @@ module.exports =
     return providers
 
   modifyLoginPage: (options, done) ->
-    {controller, html} = options
+    {controller, $} = options
     supportedProviders = @supportedProviders()
 
     providers = []
@@ -103,8 +103,8 @@ module.exports =
     providers.push "<a class='register' href='/auth/github'>GitHub</a>" if supportedProviders.github
     providers.push "<a class='register' href='/auth/twitter'>Twitter</a>" if supportedProviders.twitter
     if providers.length
-      htmlToAdd = "<span>With: </span><br />#{providers.join(" | ")}<br />"
-      options.html = html.replace("</h2>", "</h2>"+htmlToAdd)
+      htmlToAdd = "<span>With: </span><br />#{providers.join(" | ")}<br /><br />or:<br /><br />"
+      $(".login-form h2").after htmlToAdd
 
     done()
 
