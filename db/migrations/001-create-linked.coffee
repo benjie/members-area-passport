@@ -12,6 +12,7 @@ module.exports =
         type: 'number'
         required: true
         serial: true
+        primary: true
 
       user_id:
         type: 'number'
