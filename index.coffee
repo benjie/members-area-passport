@@ -29,7 +29,7 @@ module.exports =
             userLinked.getUser done
         else
           # XXX: Better error message
-          return done new Error("Unrecognised and no account")
+          return done new Error("Please log in to your account first and then connect it with this service.")
 
     loggedin = -> (req, res, next) ->
       res.redirect "/"
