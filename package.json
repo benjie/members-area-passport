@@ -1,6 +1,6 @@
 {
   "name": "members-area-passport",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Add additional passport authentication methods to members-area.",
   "main": "index.js",
   "scripts": {
