@@ -37,5 +37,5 @@ module.exports = (db, models) ->
     hooks: db.applyCommonHooks {}
 
   UserLinked.modelName = 'UserLinked'
-  UserLinked.hasOne 'user', models.User, reverse: 'userLinkeds', autoFetch: true
+  UserLinked.hasOne 'user', models.User, reverse: 'userLinkeds', autoFetch: false
   return UserLinked
