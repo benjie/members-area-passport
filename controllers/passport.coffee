@@ -1,6 +1,6 @@
-Controller = require 'members-area/app/controller'
+LoggedInController = require 'members-area/app/controllers/logged-in'
 
-module.exports = class PassportController extends Controller
+module.exports = class PassportController extends LoggedInController
   settings: (done) ->
     unless @req.user and @req.user.can('configure_passport')
       err = new Error "Permission denied"
